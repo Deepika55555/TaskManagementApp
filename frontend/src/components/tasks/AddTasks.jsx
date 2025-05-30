@@ -8,6 +8,8 @@ export default function AddTask({ onClose, onTaskAdded }) {
   const [status, setStatus] = useState("Pending");
   const [taskCompletedDate, setTaskCompletedDate] = useState("");
   const [error, setError] = useState("");
+  const API_URL = `${import.meta.env.VITE_API_URL}`;
+
 
   // If user picks a completed date, force status = Completed
   useEffect(() => {

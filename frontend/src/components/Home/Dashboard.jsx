@@ -14,6 +14,8 @@ const Dashboard = () => {
   const [upcomingTasks, setUpcomingTasks] = useState([]);
   const [completedData, setCompletedData] = useState({ labels: [], data: [] });
   const [showAddTask, setShowAddTask] = useState(false);
+  const API_URL = `${import.meta.env.VITE_API_URL}`;
+
 
   const fetchTasks = async () => {
     try {
