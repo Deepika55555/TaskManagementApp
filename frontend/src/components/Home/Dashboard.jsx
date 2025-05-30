@@ -7,6 +7,8 @@ import jsPDF from "jspdf";
 import "chart.js/auto";
 import AddTask from "../tasks/AddTasks";
 import TaskGrid from "../tasks/TaskGrid";
+import TaskList from "../tasks/TaskList";
+
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -77,6 +79,19 @@ const Dashboard = () => {
     }
   };
 
+  const handleTaskUpdate = async (updatedTask) => {
+    const newTasks = tasks.map(t => t._id === updatedTask._id ? updatedTask : t);
+    setTasks(newTasks);
+    fetchTasks(); // Refresh categorization
+  };
+
+  const handleTaskDelete = async (deletedId) => {
+    const newTasks = tasks.filter(t => t._id !== deletedId);
+    setTasks(newTasks);
+    fetchTasks(); // Refresh categorization
+  };
+
+
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -132,6 +147,16 @@ const Dashboard = () => {
       </section>
 
       <TaskGrid tasks={upcomingTasks} title="Upcoming Tasks" />
+
+      <section>
+        <h2 className="text-xl font-semibold">All Tasks</h2>
+        <TaskList
+          tasks={tasks}
+          onTaskUpdated={handleTaskUpdate}
+          onTaskDeleted={handleTaskDelete}
+        />
+      </section>
+
 
       {/* <section>
         <h2 className="text-xl font-semibold">Popular Categories</h2>
