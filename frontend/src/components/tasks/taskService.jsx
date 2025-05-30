@@ -1,7 +1,7 @@
 // src/tasks/taskService.js
 import axios from "axios";
 
-const URL = process.env.REACT_APP_API_URL;
+const URL = import.meta.env.VITE_API_URL;
 
 
 const API_URL = `${URL}/api/tasks`;
